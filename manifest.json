@@ -1,0 +1,13 @@
+{
+    "manifest_version": 2,
+    "name": "Password Creater/Randomizer",
+    "description": "This extension will create a really strong random password for users.",
+    "version": "1.0",
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "index.html"
+    },
+    "web_accessible_resources": [
+        "diceware.wordlist.asc"
+    ]
+}
