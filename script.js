@@ -24,4 +24,5 @@ function readFile(){
     });
 }
 
+console.log('push to master should not work');
 document.getElementById('generatePasswordButton').addEventListener('click', () => {readFile()});
