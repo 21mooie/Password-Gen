@@ -3,7 +3,7 @@
 // fetch(url)
 //     .then((response) => console.log(response)) //assuming file contains json
 //     .then((json) => console.log(json));
-let passwords;
+let entireFile;
 
 
 function readFile(){
@@ -12,16 +12,16 @@ function readFile(){
             fileEntry.file(function(file) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                // contents are in this.result
-                passwords = e.target.result.split('\n');
-                // console.log(passwords);
-                let wordList = [];
+                entireFile = e.target.result.split('\n');
+                let password = [];
                 for (let i = 0; i < 7; i++) {
-                    console.log('here');
-                    console.log(passwords[Math.floor(Math.random()* 7467)].split(' '));
-                    wordList.push();
+                    // gets random word for use
+                    let word = entireFile[Math.floor(Math.random()* 7467)].split('\t')[1];
+                    password.push(word);
                 }
-                console.log(wordList);
+                password = password.join('');
+                console.log(password);
+                document.getElementById('newPassword').innerHTML = password;
             };
             reader.readAsText(file);
             });
@@ -29,6 +29,4 @@ function readFile(){
     });
 }
 
-readFile();
-readFile();
 readFile();
