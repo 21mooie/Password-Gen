@@ -24,4 +24,4 @@ function readFile(){
     });
 }
 
-readFile();
+document.getElementById('generatePasswordButton').addEventListener('click', () => {readFile()});
