@@ -1,8 +1,3 @@
-// const url = chrome.runtime.getURL('diceware.wordlist.asc');
-
-// fetch(url)
-//     .then((response) => console.log(response)) //assuming file contains json
-//     .then((json) => console.log(json));
 let entireFile;
 
 
