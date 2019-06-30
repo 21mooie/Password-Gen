@@ -1,0 +1,1 @@
+Chrome Extension to give user ability to randomly generate custom passwords
