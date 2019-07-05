@@ -25,3 +25,14 @@ function readFile(){
 }
 
 document.getElementById('generatePasswordButton').addEventListener('click', () => {readFile()});
+
+document.getElementById('copy').addEventListener('click', () => {
+    const copyText = document.getElementById('newPassword');
+    /* Select the text field */
+    copyText.select();
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+
+    alert("Copied the text: " + copyText.value);
+})
