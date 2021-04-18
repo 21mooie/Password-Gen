@@ -1,7 +1,7 @@
 let entireFile;
 
 
-function readFile(){
+function readFile(allowCaps, allowNumbers, allowSpecialChars){
     chrome.runtime.getPackageDirectoryEntry(function(root) {
         root.getFile('diceware.wordlist.asc', {}, function(fileEntry) {
             fileEntry.file(function(file) {
@@ -12,6 +12,21 @@ function readFile(){
                 for (let i = 0; i < 7; i++) {
                     // gets random word for use
                     let word = entireFile[Math.floor(Math.random()* 7467)].split('\t')[1];
+                    if (allowCaps) {
+                        word = word.charAt(0).toUpperCase() + word.slice(1);
+                    }
+                    if (allowNumbers) {
+                        word = word.split('').map((letter) => {
+                            switch(letter) {
+                                case 'e':
+                                    return '3';
+                                case 'o':
+                                    return '0';
+                                default:
+                                    return;
+                            }
+                        }).join('');
+                    }
                     password.push(word);
                 }
                 password = password.join('');
@@ -24,7 +39,9 @@ function readFile(){
     });
 }
 
-document.getElementById('generatePasswordButton').addEventListener('click', () => {readFile()});
+document.getElementById('generatePasswordButton').addEventListener('click', () => {    
+    readFile(document.getElementById('caps').checked, document.getElementById('numbers'), document.getElementById('specialCharss'));
+});
 
 document.getElementById('copy').addEventListener('click', () => {
     const copyText = document.getElementById('newPassword');
