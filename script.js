@@ -23,7 +23,19 @@ function readFile(allowCaps, allowNumbers, allowSpecialChars){
                                 case 'o':
                                     return '0';
                                 default:
-                                    return;
+                                    return letter;
+                            }
+                        }).join('');
+                    }
+                    if (allowSpecialChars) {
+                        word = word.split('').map((letter) => {
+                            switch(letter) {
+                                case 'a':
+                                    return '@';
+                                case 'i':
+                                    return '!';
+                                default:
+                                    return letter;
                             }
                         }).join('');
                     }
@@ -39,8 +51,8 @@ function readFile(allowCaps, allowNumbers, allowSpecialChars){
     });
 }
 
-document.getElementById('generatePasswordButton').addEventListener('click', () => {    
-    readFile(document.getElementById('caps').checked, document.getElementById('numbers'), document.getElementById('specialCharss'));
+document.getElementById('generatePasswordButton').addEventListener('click', () => {
+    readFile(document.getElementById('caps').checked, document.getElementById('numbers').checked, document.getElementById('specialChars').checked);
 });
 
 document.getElementById('copy').addEventListener('click', () => {
