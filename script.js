@@ -65,7 +65,8 @@ function readFile(allowCaps, allowNumbers, allowSpecialChars){
     });
 }
 
-document.getElementById('generatePasswordButton').addEventListener('click', () => {
+document.getElementById('generatePasswordButton').addEventListener('click', (e) => {
+    e.preventDefault();
     readFile(document.getElementById('caps').checked, document.getElementById('numbers').checked, document.getElementById('specialChars').checked);
 });
 
