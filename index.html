@@ -16,46 +16,56 @@
                 Password Generator
             </h1>
         </div>
-        <div class="row mb-2">
-            <div class="col">
-                <textarea id="newPassword"></textarea>
-            </div>
-            <div class="col">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="caps" />
-                    <label class="form-check-label" for="caps">
-                        Include Capitals
-                    </label>
+        <form>
+            <div class="row mb-2">
+                <div class="col">
+                    <textarea id="newPassword" placeholder="New Password" alt="The new password will be presented here." class="form-control"></textarea>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="numbers" />
-                    <label class="form-check-label" for="numbers">
-                        Include Numbers
-                    </label>
+
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="caps" />
+                        <label class="form-check-label" for="caps">
+                            Include Capitals
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="numbers" />
+                        <label class="form-check-label" for="numbers">
+                            Include Numbers
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="specialChars" />
+                        <label class="form-check-label" for="specialChars">
+                            Include Special Characters
+                        </label>
+                    </div>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="specialChars" />
-                    <label class="form-check-label" for="specialChars">
-                        Include Special Characters
-                    </label>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-9">
+                    <label for="myRange" class="form-label"> Maximum number of characters</label>
+                    <div>
+                        <input type="range" min="8" max="25" value="10" class="form-range" id="myRange">
+                    </div>
+                    <p id="demo"></p>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="slidecontainer">
-                <label for="myRange"> Maximum Number Of Characters</label>
-                <input type="range" min="8" max="25" value="10" class="slider" id="myRange">
+
+            <div class="row mb-2">
+                <div class="col">
+                    <button id="generatePasswordButton" class="btn btn-primary">Generate Password</button>
+                </div>
+
+                <div class="col">
+                    <button id="copy" class="btn btn-light">Copy to Clipboard</button>
+                </div>
             </div>
-            <p id="demo"></p>
-        </div>
-        <div class="row mb-2">
-            <div class="col">
-                <button id="generatePasswordButton" class="btn btn-primary">Generate Password</button>
-            </div>
-            <div class="col">
-                <button id="copy" class="btn btn-light">Copy to Clipboard</button>
-            </div>
-        </div>
+        </form>
         <script src="script.js"></script>
     </div>
 </body>

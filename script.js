@@ -57,7 +57,7 @@ function readFile(allowCaps, allowNumbers, allowSpecialChars){
                     
                 }
                 console.log(password);
-                document.getElementById('newPassword').innerHTML = password;
+                document.getElementById('newPassword').value = password;
             };
             reader.readAsText(file);
             });
