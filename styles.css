@@ -5,3 +5,7 @@ body {
 #newPassword {
   resize: none;
 }
+
+.center-text {
+  text-align: center;
+}
