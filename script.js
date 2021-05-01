@@ -1,5 +1,5 @@
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
+var slider = document.getElementById("numberRange");
+var output = document.getElementById("currentMaxCharacters");
 output.innerHTML = slider.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
@@ -9,6 +9,50 @@ slider.oninput = function() {
 
 let entireFile;
 
+function getNewPassword(entireFile, allowCaps, allowNumbers, allowSpecialChars) {
+    let password = '';
+    while(password.length < slider.value) {
+        // gets random word for use
+        let word = entireFile[Math.floor(Math.random()* 7467)].split('\t')[1];
+        if (allowCaps) {
+            word = word.charAt(0).toUpperCase() + word.slice(1);
+        }
+        if (allowNumbers) {
+            word = word.split('').map((letter) => {
+                switch(letter) {
+                    case 'e':
+                        return '3';
+                    case 'o':
+                        return '0';
+                    default:
+                        return letter;
+                }
+            }).join('');
+        }
+        if (allowSpecialChars) {
+            word = word.split('').map((letter) => {
+                switch(letter) {
+                    case 'a':
+                        return '@';
+                    case 'i':
+                        return '!';
+                    default:
+                        return letter;
+                }
+            }).join('');
+        }
+        let remaining = slider.value - password.length;
+        if (remaining >= word.length) {
+            password += word;
+        } else {
+            password += word.slice(0,remaining);
+        }
+        
+    }
+    console.log(password);
+    document.getElementById('newPassword').value = password;
+}
+
 
 function readFile(allowCaps, allowNumbers, allowSpecialChars){
     chrome.runtime.getPackageDirectoryEntry(function(root) {
@@ -17,47 +61,7 @@ function readFile(allowCaps, allowNumbers, allowSpecialChars){
             var reader = new FileReader();
             reader.onload = function(e) {
                 entireFile = e.target.result.split('\n');
-                let password = '';
-                while(password.length < slider.value) {
-                    // gets random word for use
-                    let word = entireFile[Math.floor(Math.random()* 7467)].split('\t')[1];
-                    if (allowCaps) {
-                        word = word.charAt(0).toUpperCase() + word.slice(1);
-                    }
-                    if (allowNumbers) {
-                        word = word.split('').map((letter) => {
-                            switch(letter) {
-                                case 'e':
-                                    return '3';
-                                case 'o':
-                                    return '0';
-                                default:
-                                    return letter;
-                            }
-                        }).join('');
-                    }
-                    if (allowSpecialChars) {
-                        word = word.split('').map((letter) => {
-                            switch(letter) {
-                                case 'a':
-                                    return '@';
-                                case 'i':
-                                    return '!';
-                                default:
-                                    return letter;
-                            }
-                        }).join('');
-                    }
-                    let remaining = slider.value - password.length;
-                    if (remaining >= word.length) {
-                        password += word;
-                    } else {
-                        password += word.slice(0,remaining);
-                    }
-                    
-                }
-                console.log(password);
-                document.getElementById('newPassword').value = password;
+                getNewPassword(entireFile, allowCaps, allowNumbers, allowSpecialChars);
             };
             reader.readAsText(file);
             });
