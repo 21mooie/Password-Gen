@@ -17,8 +17,8 @@ function readFile(allowCaps, allowNumbers, allowSpecialChars){
             var reader = new FileReader();
             reader.onload = function(e) {
                 entireFile = e.target.result.split('\n');
-                let password = [];
-                for (let i = 0; i < 7; i++) {
+                let password = '';
+                while(password.length < slider.value) {
                     // gets random word for use
                     let word = entireFile[Math.floor(Math.random()* 7467)].split('\t')[1];
                     if (allowCaps) {
@@ -48,9 +48,14 @@ function readFile(allowCaps, allowNumbers, allowSpecialChars){
                             }
                         }).join('');
                     }
-                    password.push(word);
+                    let remaining = slider.value - password.length;
+                    if (remaining >= word.length) {
+                        password += word;
+                    } else {
+                        password += word.slice(0,remaining);
+                    }
+                    
                 }
-                password = password.join('');
                 console.log(password);
                 document.getElementById('newPassword').innerHTML = password;
             };

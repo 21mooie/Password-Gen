@@ -1,3 +1,7 @@
+body {
+  min-width: 576px;
+}
+
 .slidecontainer {
     width: 100%; /* Width of the outside container */
   }
@@ -26,7 +30,7 @@
     appearance: none;
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
-    background: #4CAF50; /* Green background */
+    background: #0d6efd; /* Green background */
     cursor: pointer; /* Cursor on hover */
   }
   
