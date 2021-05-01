@@ -1,5 +1,7 @@
 body {
   min-width: 576px;
+  background-color: #f4f4f4;
+  font-family: "Poppins",sans-serif;
 }
 
 #newPassword {

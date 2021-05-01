@@ -10,14 +10,14 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <div class="row mb-3 mt-2">
+    <div class="container page">
+        <div class="row mb-2 mt-2">
             <h1>
                 Password Generator
             </h1>
         </div>
         <form>
-            <div class="row mb-3">
+            <div class="row mb-4">
                 <div class="col pt-2">
                     <textarea id="newPassword" placeholder="New Password" alt="The new password will be presented here." class="form-control align-middle"></textarea>
                 </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="row justify-content-center mb-3">
+            <div class="row justify-content-center mb-2">
                 <div class="col-9 center-text">
                     <label for="numberRange" class="form-label text-center"> Maximum number of characters</label>
                     <input type="range" min="8" max="25" value="10" class="form-range" id="numberRange" />
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="col">
-                    <button id="copy" class="btn btn-light">Copy to Clipboard</button>
+                    <button id="copy" class="btn btn-secondary">Copy to Clipboard</button>
                 </div>
             </div>
         </form>
