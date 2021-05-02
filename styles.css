@@ -11,3 +11,10 @@ body {
 .center-text {
   text-align: center;
 }
+
+#pageMessages {
+  position: fixed;
+  top: 20px;
+  right: 15px;
+  width: 45%;
+}
