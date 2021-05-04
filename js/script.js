@@ -9,6 +9,45 @@ slider.oninput = function() {
 
 let entireFile;
 
+function initializeConfig() {
+    const initConfig = {
+        capital: false,
+        numbers: false,
+        specialChars: false,
+    };
+    localStorage.setItem('config', JSON.stringify(initConfig));
+    return initConfig;
+}
+
+(function loadConfigIIFE() {
+    const config = JSON.parse(localStorage.getItem('config')) || initializeConfig();
+    document.getElementById('caps').checked = config.capital;
+    document.getElementById('numbers').checked = config.numbers;
+    document.getElementById('specialChars').checked = config.specialChars;
+
+    const configInputs = document.getElementsByClassName('config');
+
+    for (let i=0; i<configInputs.length; i++) {
+        configInputs[i].addEventListener('change', (e) => {
+            console.log(e.currentTarget.id);
+            switch(e.currentTarget.id) {
+                case 'caps':
+                    config.capital = e.currentTarget.checked;
+                    break;
+                case 'numbers':
+                    config.numbers = e.currentTarget.checked;
+                    break;
+                case 'specialChars':
+                    config.specialChars = e.currentTarget.checked;
+                    break;
+                default:
+                    break;
+            }
+            localStorage.setItem('config', JSON.stringify(config));
+        });
+    }
+})();
+
 function showAlert(status, text) {
     const messageDiv = document.getElementById('pageMessages');
     const alert = document.createElement('div');
