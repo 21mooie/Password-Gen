@@ -4,26 +4,29 @@ output.innerHTML = slider.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function() {
-  output.innerHTML = this.value;
+    output.innerHTML = this.value;
 }
 
 let entireFile;
 
-function initializeConfig() {
-    const initConfig = {
-        capital: false,
-        numbers: false,
-        specialChars: false,
-    };
-    localStorage.setItem('config', JSON.stringify(initConfig));
-    return initConfig;
-}
-
 (function loadConfigIIFE() {
+    function initializeConfig() {
+        const initConfig = {
+            capital: false,
+            numbers: false,
+            specialChars: false,
+            numberRange: 15
+        };
+        localStorage.setItem('config', JSON.stringify(initConfig));
+        return initConfig;
+    }
+
     const config = JSON.parse(localStorage.getItem('config')) || initializeConfig();
     document.getElementById('caps').checked = config.capital;
     document.getElementById('numbers').checked = config.numbers;
     document.getElementById('specialChars').checked = config.specialChars;
+    document.getElementById('numberRange').value = config.numberRange;
+    output.innerHTML = config.numberRange;
 
     const configInputs = document.getElementsByClassName('config');
 
@@ -40,6 +43,8 @@ function initializeConfig() {
                 case 'specialChars':
                     config.specialChars = e.currentTarget.checked;
                     break;
+                case 'numberRange':
+                    config.numberRange = e.currentTarget.value;
                 default:
                     break;
             }
