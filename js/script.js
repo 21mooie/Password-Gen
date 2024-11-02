@@ -98,12 +98,14 @@ function getNewPassword(entireFile, allowCaps, allowNumbers, allowSpecialChars) 
             }).join('');
         }
         let remaining = slider.value - password.length;
+        if (word.includes('\r')) {
+            word = word.split('').filter(char => char !== '\r').join('');
+        }
         if (remaining >= word.length) {
             password += word;
         } else {
             password += word.slice(0,remaining);
         }
-        
     }
     console.log(password);
     document.getElementById('newPassword').value = password;
